@@ -1,0 +1,37 @@
+<div id="order-confirmation">
+  <div class="row">
+    <div class='large-8 columns'>
+      <div class="top-box background-gray red-border-left">
+        <h3 style="margin-top:1rem;">Thank You, Your order has been placed</h3>
+        <div class='row' style='margin-top:1rem;margin-left:2rem;'>
+          <ul class='vertical menu large-12 columns'>
+            <li>
+              An email confirmation has been sent to you
+            </li>
+            <li>
+              Order Number: <strong><%= @order.number %></strong>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr style='color:#aac;'/>
+      <div>
+        <% @order.order_items.group_by(&:variant_id).each do |variant_id, items| %>
+          <div class='row media-object'>
+            <div class='large-4 columns'>
+              <%= link_to product_path(items.first.variant.product), title: items.first.variant.product.name do %>
+                <%= image_tag items.first.variant.product.featured_image(:medium), class: 'thumbnail' %>
+              <% end %>
+            </div>
+            <div class='large-8 columns'>
+              <h4 class=''>
+                <%= raw items.first.variant.product_name %>
+              </h4>
+              Qty: <%= items.size %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

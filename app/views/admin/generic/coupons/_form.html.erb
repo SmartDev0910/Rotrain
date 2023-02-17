@@ -1,0 +1,67 @@
+<% if @coupon.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@coupon.errors.count, "error") %> prohibited this coupon from being saved:</h2>
+
+    <ul>
+    <% @coupon.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class='row'>
+  <ul class='column large-5'>
+    <li class="field">
+      <label>Code</label>
+      <%= f.text_field :code %>
+    </li>
+    <% unless @coupon.id %>
+      <li class="field">
+        <label>Type</label>
+        <%= select_tag :c_type, @coupon_types.map{|ct| "<option>#{ct}</option>"}.join().html_safe , { include_blank: true } %>
+      </li>
+    <% end %>
+
+    <li class="field">
+      <label>Amount</label>
+      <%= f.text_field :amount %>
+    </li>
+
+    <li class="field">
+      <label>Minimum Value</label>
+      <%= f.text_field :minimum_value %>
+    </li>
+
+    <li class="field">
+      <label>Percent</label>
+      <%= f.text_field :percent %>
+    </li>
+  </ul>
+  <ul class='column large-5 float-left'>
+    <li class="field">
+      <label>Description</label>
+      <%= f.text_area :description %>
+    </li>
+
+    <li class="field">
+      <label>Combine</label>
+      <%= f.check_box :combine %>
+    </li>
+
+    <li class="field">
+      <label>Starts at</label>
+      <div class='date-select'>
+        <%= f.date_select :starts_at %>
+      </div>
+    </li>
+
+    <li class="field">
+      <label>Expires at</label>
+      <div class='date-select'>
+        <%= f.date_select :expires_at %>
+      </div>
+    </li>
+  </ul>
+</div>
+<%= f.submit "Create", class: "button float-right" %>

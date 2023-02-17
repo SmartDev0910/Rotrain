@@ -1,0 +1,68 @@
+<%= render partial: '/admin/merchandise/sub_header'%>
+
+<h2> Product: <%= @product.name %> (<%= '*' if @variant.master %><%= @variant.sku %>)</h2>
+
+<%= link_to "Back to Product", admin_merchandise_product_path(@product), class: 'button small' %>
+<%= link_to 'Edit Variant', edit_admin_merchandise_product_variant_path(@product, @variant), class: 'button' %>
+
+<fieldset id="admin-product-names">
+
+<div class='clear'></div>
+<div>
+  <%= label :variant, :sku %>
+</div>
+<div>
+  <%= @variant.sku %>
+</div>
+<div class='clear'></div>
+<div>
+  <%= label :variant, :price %>
+</div>
+<div>
+  <%= @variant.price %>
+</div>
+
+<div class='clear'></div>
+<div>
+  <%= label :variant, :cost %>
+</div>
+<div>
+  <%= @variant.cost %>
+</div>
+
+<div class='clear'></div>
+<div>
+  <%= label :variant, :count_on_hand %>
+</div>
+<div>
+  <%= @variant.count_on_hand %>
+</div>
+
+<div class='clear'></div>
+<div>
+  <%= label :variant, :count_pending_to_customer %>
+</div>
+<div>
+  <%= @variant.count_pending_to_customer %>
+</div>
+
+<div class='clear'></div>
+<div>
+  <%= label :variant, :count_pending_from_supplier %>
+</div>
+<div>
+  <%= @variant.count_pending_from_supplier %>
+</div>
+</fieldset>
+
+<fieldset id="admin-product-properties">
+  <legend>Properties</legend>
+  <% @variant.variant_properties.each do |variant_prop|  %>
+    <%= variant_prop.property.identifing_name %>: <%= variant_prop.description %> <br/>
+  <% end %>
+</fieldset>
+<% if @variant.active? %>
+  <%= link_to 'Inactivate Variant',
+              admin_merchandise_product_variant_path(@product, @variant),
+              class: 'button red-button alert', method: :delete, data: { confirm: "Are you sure?" } %>
+<% end %>

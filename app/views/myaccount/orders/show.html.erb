@@ -1,0 +1,46 @@
+
+<% content_for :head do -%>
+  <%= stylesheet_link_tag 'tables.css' %>
+<% end %>
+
+<div class=' large-9 columns'>
+  <h3> Order # <%= @order.number %> </h3>
+
+  <div class='pretty_table large-10'>
+    <table style='margin: 0;'>
+      <tbody>
+        <tr>
+          <td class='text-left'> Number: </td><td class='text-left'> <%= @order.number %> </td>
+        </tr>
+        <tr>
+          <td class='text-left'> Completed at: </td><td class='text-left'> <%= @order.display_completed_at %> </td>
+        </tr>
+        <tr>
+          <td class='text-left'> Shipping Address: </td>
+          <td class='text-left'>
+            <%= render partial: '/shared/compact_address',
+                       locals: { shopping_address: @order.ship_address } if @order.ship_address_id %>
+          </td>
+        </tr>
+        <tr>
+          <td class='text-left'> Billing Address: </td>
+          <td class='text-left'>
+            <%= render partial: '/shared/compact_address',
+                       locals: { shopping_address: @order.bill_address } if @order.bill_address_id %>
+          </td>
+        </tr>
+
+        <tr>
+          <td COLSPAN=2> <strong>Items</strong> </td>
+        </tr>
+        <% @order.order_items.each do |item| %>
+          <tr>
+            <td class='text-left' COLSPAN=2>
+              <%= link_to item.variant.product_name, product_path(item.variant.product) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

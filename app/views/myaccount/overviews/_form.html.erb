@@ -1,0 +1,34 @@
+<div id='myaccount-profile_name_form' class='row'>
+  <fieldset id="myaccount-profile" class='large-5 columns'>
+     <ul>
+       <li>
+         <%= f.label :first_name %>
+         <%= f.text_field :first_name, :placeholder => "First Name" %>
+        </li>
+        <li>
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name %>
+        </li>
+        <li>
+          <%= f.label :email %>
+          <%= f.text_field :email %>
+        </li>
+
+     </ul>
+  </fieldset>
+
+  <fieldset id="myaccount-profile-password" class='large-4 '>
+    <ul>
+      <li>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </li>
+      <li>
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+      </li>
+    </ul>
+  </fieldset>
+</div>
+
+<div class="actions large-10"><%= f.submit 'Update' , class: 'button float-right' %></div>

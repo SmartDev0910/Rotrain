@@ -1,0 +1,77 @@
+@import "site/app_mixins";
+@import "site/my_account";
+@import "site/cart";
+@import "site/panel";
+@import "site/header";
+@import "compass/layout/sticky-footer";
+@import "compass/utilities/general/clearfix";
+
+// RoR eCommerce Customer-Facing Styles
+
+@include sticky-footer(54px, "#body_wrapper", "#prefooter_wrapper", "#footer_wrapper");
+
+.clearfix {
+  @include clearfix();
+}
+
+.flash_messages {
+  margin-top: 20px;
+}
+
+.field_with_errors {
+  input {
+    border: 1px #C66 solid;
+  }
+}
+
+ul {
+  list-style: none;
+  &.vertical-list {
+    display: block;
+    li {float: none;}
+    label {
+      display: inline-block;
+      width: 150px;
+      &.long {
+        width: 250px;
+      }
+    }
+    &.compact {
+      label {
+        width: 70px;
+      }
+    }
+  }
+}
+#footer_wrapper {
+  color:#333;
+  #main-footer-tabs {margin-top:18px;}
+}
+
+.fade {
+  opacity: 1;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+}
+
+.fade:hover {
+  opacity: 0.5;
+}
+.unfade {
+  opacity: 0;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+}
+
+.unfade:hover {
+  opacity: 0.8;
+}
+
+.first_double_hr {
+  border-top:1px solid #444;border-botton:1px solid #DDD;color:#444;margin:0;
+}
+.second_double_hr {
+  border-top:1px solid #DDD;margin: 1px 0;margin-bottom: 20px;
+}
